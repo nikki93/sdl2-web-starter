@@ -31,24 +31,6 @@ add_executable(sdl-test main.cc)
 target_compile_features(sdl-test PRIVATE cxx_std_17)
 set_target_properties(sdl-test PROPERTIES CXX_EXTENSIONS OFF)
 
-# Warnings
-if(MSVC)
-  target_compile_options(sdl-test PRIVATE /W4 /WX
-    #/wd4100 # Disable 'unreferenced formal parameter'
-    /wd4244 # Disable 'possible loss of data'
-    /wd4307 # Disable 'integral constant overflow'
-    /wd4702 # Disable 'unreachable code'
-    )
-  target_link_options(sdl-test PRIVATE /WX)
-else()
-  target_compile_options(sdl-test PRIVATE -fcolor-diagnostics -pedantic-errors -Wall -Wextra -Wno-missing-braces)
-  target_link_options(sdl-test PRIVATE -fcolor-diagnostics -pedantic-errors -Wall -Wextra -Wno-missing-braces)
-  if(WIN32)
-    target_compile_options(sdl-test PRIVATE -Wno-language-extension-token)
-    target_link_options(sdl-test PRIVATE -Wno-language-extension-token)
-  endif()
-endif()
-
 # Web flags
 if(WEB)
   target_link_options(sdl-test PRIVATE "SHELL:--bind")
@@ -85,9 +67,6 @@ endif()
 # Bundle 'assets/'
 if(WEB)
   target_link_options(sdl-test PRIVATE "SHELL:--preload-file ${PROJECT_SOURCE_DIR}/assets@assets")
-elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS")
-  target_sources(sdl-test PRIVATE "assets")
-  set_target_properties(sdl-test PROPERTIES RESOURCE "assets")
 endif()
 
 # Static web files
