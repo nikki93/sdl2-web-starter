@@ -5,6 +5,8 @@ Make sure to either `git clone --recursive`, or to do `git submodule update
 
 # Building / running
 
+You'll need CMake.
+
 ## Desktop
 
 `./run.sh release` or `./run.sh debug`. You can make changes in the code and
@@ -29,7 +31,9 @@ serve 'build/web-release' or 'build/web-debug' and see the result in your
 browser.
 
 If you install 'entr' and 'node' you can instead use `./run.sh
-web-watch-release` or `./run.sh web-watch-debug` (watches for code changes and
-rebuilds), and simultaneously also `./run.sh web-serve-release` or `./run.sh
-web-serve-debug` (serves the web build).  Then you should see your website at
-http://localhost:8080.
+web-watch-release` or `./run.sh web-watch-debug` to watch for code changes
+automatically rebuild, and simultaneously serve with `./run.sh
+web-serve-release` or `./run.sh web-serve-debug`. Then you should see your
+website at http://localhost:8080.
+
+On Windows you can run these script using WSL.
