@@ -11,7 +11,7 @@ auto main() -> int {
       = SDL_CreateWindow("sdl-test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 450, 0);
   auto renderer = SDL_CreateRenderer(window, -1, 0);
 
-  static auto update = [&]() {
+  auto update = [&]() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
@@ -22,7 +22,7 @@ auto main() -> int {
     }
   };
 
-  static auto draw = [&]() {
+  auto draw = [&]() {
     SDL_SetRenderDrawColor(renderer, 0xff, 0x80, 0x80, 0xff);
     SDL_RenderClear(renderer);
 
@@ -33,14 +33,15 @@ auto main() -> int {
     SDL_RenderPresent(renderer);
   };
 
-  static auto frame = [&]() {
+  auto frame = [&]() {
     update();
     draw();
   };
 #ifdef __EMSCRIPTEN__
+  static auto &sFrame = frame;
   emscripten_set_main_loop(
       []() {
-        frame();
+        sFrame();
       },
       0, true);
 #else
