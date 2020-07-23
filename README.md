@@ -37,3 +37,6 @@ web-serve-release` or `./run.sh web-serve-debug`. Then you should see your
 website at http://localhost:8080.
 
 On Windows you can run these script using WSL.
+
+You can put assets (eg. image files) under 'assets/' and reference them from
+your code.
