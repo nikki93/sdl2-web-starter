@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <!-- Meta -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="sdl test" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+
+    <!-- Style -->
+    <style>
+      /* Basics */
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        background-color: #121212;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Root */
+      div.root-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+      }
+
+      /* Main */
+      div.main-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Scene */
+      div.scene-container {
+        background-color: black;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      div.scene-aspect-ratio {
+        width: 100%;
+        padding-top: 56.25%;
+        position: relative;
+      }
+      canvas.scene {
+        background-color: black;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Root -->
+    <div class="root-container">
+      <!-- Main -->
+      <div class="main-container">
+        <!-- Scene -->
+        <div class="scene-container">
+          <div class="scene-aspect-ratio">
+            <canvas
+              class="scene"
+              id="canvas"
+              oncontextmenu="event.preventDefault()"
+              tabindex="0"
+              onclick="this.focus()"
+            />
+          </div>
+          <script>
+            document.getElementById("canvas").focus();
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!-- WASM -->
+    <script type="text/javascript">
+      // Emscripten needs this
+      var Module = {
+        canvas: document.getElementById("canvas")
+      };
+
+      // Try to force skipping cache
+      const s = document.createElement("script");
+      s.async = true;
+      s.type = "text/javascript";
+      s.src = "sdl-test.js?ts=" + new Date().getTime();
+      document.getElementsByTagName("head")[0].appendChild(s);
+    </script>
+  </body>
+</html>
