@@ -22,6 +22,7 @@ cd ..
 git clone https://github.com/emscripten-core/emsdk.git
 ./emsdk install latest
 ./emsdk activate latest
+cd -
 ```
 Alternatively, point the emscripten path in 'CMakeLists.txt' to an existing
 emscripten install you may have, or your package manager's emscripten install.
@@ -31,10 +32,10 @@ serve 'build/web-release' or 'build/web-debug' and see the result in your
 browser.
 
 If you install 'entr' and 'node' you can instead use `./run.sh
-web-watch-release` or `./run.sh web-watch-debug` to watch for code changes
-automatically rebuild, and simultaneously serve with `./run.sh
-web-serve-release` or `./run.sh web-serve-debug`. Then you should see your
-website at http://localhost:8080.
+web-watch-release` or `./run.sh web-watch-debug` to watch for code changes with
+automatic rebuild, and simultaneously serve with `./run.sh web-serve-release`
+or `./run.sh web-serve-debug`. Then you should see your website at
+http://localhost:8080.
 
 On Windows you can run these script using WSL.
 
