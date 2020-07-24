@@ -10,7 +10,7 @@ You'll need CMake.
 ## Desktop
 
 `./run.sh release` or `./run.sh debug`. You can make changes in the code and
-run that again to rebuild an rerun.
+run that again to rebuild and rerun.
 
 ## Web
 
